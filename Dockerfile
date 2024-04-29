@@ -16,11 +16,13 @@ RUN pip install --upgrade pip setuptools wheel && \
 COPY . .
 
 # Set environment variables
-ARG DB_USERNAME=$DB_USERNAME
-ARG DB_PASSWORD=$DB_PASSWORD
-ARG DB_HOST=$DB_HOST
-ARG DB_PORT=$DB_PORT
-ARG DB_NAME=$DB_NAME
+ENV DB_USERNAME=$DB_USERNAME
+ENV DB_PASSWORD=$DB_PASSWORD
+ENV DB_HOST=$DB_HOST
+ENV DB_PORT=$DB_PORT
+ENV DB_NAME=$DB_NAME
+
+RUN apt install postgresql postgresql-contrib -y
 
 RUN apt install postgresql postgresql-contrib -y
 RUN PGPASSWORD="$DB_PASSWORD" psql --host $DB_HOST -U $DB_USERNAME -d $DB_NAME -p $DB_PORT < db/1_create_tables.sql
