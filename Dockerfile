@@ -22,5 +22,11 @@ ARG DB_HOST=$DB_HOST
 ARG DB_PORT=$DB_PORT
 ARG DB_NAME=$DB_NAME
 
+ENV DB_USERNAME=$DB_USERNAME
+ENV DB_PASSWORD=$DB_PASSWORD
+ENV DB_HOST=$DB_HOST
+ENV DB_PORT=$DB_PORT
+ENV DB_NAME=$DB_NAME
+
 # Start the application
-CMD ["python", "app.py"]
+CMD ["python", "analytics/app.py"]
